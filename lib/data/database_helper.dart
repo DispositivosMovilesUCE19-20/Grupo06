@@ -46,6 +46,30 @@ class DBHelper {
     print('[DBHelper] saveUser: Success | $name, $lastname, $email, $celular, $user, $password');
   }
 
+  Future<List<User>> listUser()async{
+    var dbClient = await db;
+    List<User> usersList = List();
+    List<Map> queryList = await dbClient.rawQuery(
+      'SELECT * FROM User ',
+    );
+    if(queryList!=null&&queryList.length>0){
+      for(int i =0;i<queryList.length;i++){
+        usersList.add(User(
+          queryList[i]['id'].toString(),
+          queryList[i]['name'],
+          queryList[i]['lastname'],
+          queryList[i]['email'],
+          queryList[i]['celular'],
+          queryList[i]['user'],
+          queryList[i]['password'],
+        ));
+      }
+    } 
+    print(usersList);
+    return usersList;
+
+  }
+
   Future<List<User>> getUser(String user, String password) async {
     var dbClient = await db;
     List<User> usersList = List();

@@ -1,6 +1,17 @@
+
+
+import 'package:app_optativa/model/user_model.dart';
+import 'package:app_optativa/data/database_helper.dart';
 import 'package:flutter/material.dart';
 
+Future<List<User>> getAllUser() async {
+return DBHelper.internal().listUser();
+}
+
 class HomePage extends StatelessWidget {
+  
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,11 +47,12 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: Container(
+      body:  Container(
         child: Center(
-          child: Text('Insert fancy content here'),
+          child: Text('revision'),
         ),
-      ),
-    );
+        
+        )
+      );
   }
 }

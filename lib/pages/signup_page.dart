@@ -79,12 +79,12 @@ class _SignUpPageState extends State<SignUpPage> {
               obscureText: true,
               validator: (input) {
                 if (input.isEmpty) {
-                  return 'Please enter your password';
+                  return 'Por favor ingresa password';
                 }
               },
             ),
             RaisedButton(
-              child: Text('Registrarse'),
+              child: Text('Registrar'),
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   DBHelper dbHelper = DBHelper();
@@ -96,6 +96,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     usuarioController.text,
                     passwordController.text,
                   );
+
+                  dbHelper.listUser();
+                  
                   Navigator.pushReplacementNamed(context, '/login');
                   Navigator.pop(context);
                 }
