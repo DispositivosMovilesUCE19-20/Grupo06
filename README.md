@@ -1,8 +1,7 @@
-# app_optativa
-TAREA05_GRUPO06
 # Grupo06
+TAREA05_GRUPO06
 ## INTEGRANTES
 -Erick Lita </br>
--Henry Rodriguez
--Diego Quezada
--Yandry Torres
+-Henry Rodriguez </br>
+-Diego Quezada </br>
+-Yandry Torres </br>
