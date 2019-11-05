@@ -5,7 +5,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        backgroundColor: Colors.blueGrey,
+        title: Text('Inicio del Sistema'),
       ),
       drawer: Drawer(
         child: ListView(
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                'Log Out',
+                'Cerrar Sesion',
                 style: TextStyle(fontSize: 20.0),
               ),
               onTap: () {
