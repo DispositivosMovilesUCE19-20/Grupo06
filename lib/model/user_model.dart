@@ -25,6 +25,8 @@ class User {
   String get user => _user;
   String get password => _password;
 
+
+
   @override
   String toString() {
     return 'User{id: $id, nombre: $name, apellido: $lastname, email: $email, celular: $celular, user: $user, password: $password}';

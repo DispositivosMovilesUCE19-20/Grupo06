@@ -22,9 +22,13 @@ class _SignUpPageState extends State<SignUpPage> {
         backgroundColor: Colors.blueGrey,
         title: Text('Registro'),
       ),
-      body: Form(
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(20.0),
+        child: Form(
         key: _formKey,
+        
         child: Column(
+
           children: <Widget>[
             TextFormField(
               controller: nameController,
@@ -107,6 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ],
         ),
       ),
+      ) 
     );
   }
 }

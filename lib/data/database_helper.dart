@@ -48,7 +48,7 @@ class DBHelper {
 
   Future<List<User>> listUser()async{
     var dbClient = await db;
-    List<User> usersList = List();
+    final List<User> usersList = List();
     List<Map> queryList = await dbClient.rawQuery(
       'SELECT * FROM User ',
     );

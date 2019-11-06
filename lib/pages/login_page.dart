@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:app_optativa/model/user_model.dart';
 import 'package:app_optativa/data/database_helper.dart';
@@ -22,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
           height: 40.0,
         ),
         actions: <Widget>[
-          Text("Registrate->",style: TextStyle(fontSize: 20.0)),
+          Text("Registrate->",style: TextStyle(fontSize: 20.0),textAlign: TextAlign.left),
           InkWell(
             child: Image.asset(
               "assets/images/registrar.png",
@@ -34,7 +36,11 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ],
       ),
-      body:  Form(
+      body: Container(
+        color: Colors.white,
+        padding: EdgeInsets.all(20.0),
+        alignment: Alignment.center,
+        child: Form(
         key: _formKey,
         child: Column(
           children: <Widget>[
@@ -59,14 +65,19 @@ class _LoginPageState extends State<LoginPage> {
             ),
             RaisedButton(
               child: Text(
-                'Ingresa',
+                'Ingresar',
                 style: TextStyle(fontSize: 20),
               ),
+              padding: EdgeInsets.all(4.0),
               onPressed: _authenticateUser,
+              
             ),
+            
           ],
         ),
       ),
+      )
+        
     );
   }
 
@@ -83,6 +94,7 @@ class _LoginPageState extends State<LoginPage> {
           print('[LoginPage] _authenticateUser: Invalid credentials');
         }
       });
+      
     }
   }
 }

@@ -1,23 +1,17 @@
+import 'dart:io';
 
-
-import 'package:app_optativa/model/user_model.dart';
 import 'package:app_optativa/data/database_helper.dart';
+import 'package:app_optativa/model/user_model.dart';
 import 'package:flutter/material.dart';
 
-Future<List<User>> getAllUser() async {
-return DBHelper.internal().listUser();
-}
-
 class HomePage extends StatelessWidget {
-  
-  
-
+  Future<List<User>> user = DBHelper.internal().listUser();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        title: Text('Inicio del Sistema'),
+        title: Text('Usuarios Registrados'),
       ),
       drawer: Drawer(
         child: ListView(
@@ -44,15 +38,46 @@ class HomePage extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
+            ListTile(
+              title: Text('Salir',style: TextStyle(fontSize: 20.0),),
+              onTap: (){
+                exit(0);
+              },
+            )
           ],
         ),
       ),
-      body:  Container(
-        child: Center(
-          child: Text('revision'),
-        ),
-        
-        )
-      );
+      body: new FutureBuilder(
+        future: user,
+        builder: (context, snapshot){
+          if(snapshot.connectionState!=ConnectionState.done){
+            
+          }
+          if(snapshot.hasError){
+
+          }
+          List<User> users=snapshot.data ??[];
+          return ListView.builder(
+            itemCount: users.length,
+            itemBuilder: (context, index){
+               User usera = users[index];
+               return _buildItem(usera);
+            },
+
+          );
+        },
+      ),
+    );
   }
+}
+
+Widget _buildItem(User user) {
+  return new ListTile(
+      title: new Text(user.user),
+      subtitle: new Text('Email: ${user.email}'),
+      leading: new Icon(Icons.people),
+      onTap: (){
+        print(user.name);
+      },
+  );
 }
