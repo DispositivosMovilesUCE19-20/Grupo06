@@ -179,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
         if (users != null && users.length > 0) {
           Preference.instance.saveDataUser(usuarioController.text);
           Preference.instance.saveDataPassword(passwordController.text);          
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushReplacementNamed(context, '/home');
           showMessagelogin(context);
           print('[LoginPage] _authenticateUser: Success');
           

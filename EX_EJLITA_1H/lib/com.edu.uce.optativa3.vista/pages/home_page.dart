@@ -41,7 +41,7 @@ class _HomePage1 extends State<HomePage1> {
     lista.then((List<Mensaje> lisMensaje) {
       if (lisMensaje != null && lisMensaje.length > 0) {
         aux2 = new Mensaje(msg: lisMensaje[1].msg);
-        aux1 = new Mensaje(msg: lisMensaje[2].msg);
+        aux1 = new Mensaje(msg: lisMensaje[3].msg);
         aux3 = new Mensaje(msg: lisMensaje[3].msg);
         mensajeU = aux2.msg.toString();
         mensajeR = aux1.msg.toString();
