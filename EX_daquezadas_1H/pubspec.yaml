@@ -1,0 +1,35 @@
+name: app_optativa
+description: A new Flutter project.
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+ 
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sqflite: ^0.12.2+1
+  path_provider: ^0.4.1
+  shared_preferences: ^0.4.3
+  http: any
+  custom_radio: ^0.1.2
+  
+ 
+
+  
+  cupertino_icons: ^0.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets:
+    - assets/images/logo.png
+    - assets/images/registrar.png
+    - assets/images/Registrate.png
+
+  uses-material-design: true
