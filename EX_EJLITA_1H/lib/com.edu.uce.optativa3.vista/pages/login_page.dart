@@ -1,10 +1,10 @@
-import 'package:app_optativa/data/mensaje_provider.dart';
-import 'package:app_optativa/data/preferences_shared.dart';
-import 'package:app_optativa/model/msg_model.dart';
+import 'package:app_optativa/com.edu.uce.optativa3.controlador/data/database_helper.dart';
+import 'package:app_optativa/com.edu.uce.optativa3.controlador/data/mensaje_provider.dart';
+import 'package:app_optativa/com.edu.uce.optativa3.controlador/data/preferences_shared.dart';
+import 'package:app_optativa/com.edu.uce.optativa3.modelo/model/msg_model.dart';
+import 'package:app_optativa/com.edu.uce.optativa3.modelo/model/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:app_optativa/model/user_model.dart';
-import 'package:app_optativa/data/database_helper.dart';
-//import 'package:toast/toast.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -26,14 +26,17 @@ class _LoginPageState extends State<LoginPage> {
   Future<List<Mensaje>> lista;
   List<Mensaje> tempList;
   Mensaje aux;
+   Mensaje aux3;
+  String mensajeL;
   String mensajeT;
   String mensajeS = "Esperando datos....";
 
   @override
   void initState() {
     super.initState();
-    if (aux == null) {
+    if (aux == null && aux3==null) {
       aux = new Mensaje(msg: mensajeS);
+      aux3 = new Mensaje(msg: mensajeS);
     }
     
     setDataMsg();
@@ -41,7 +44,9 @@ class _LoginPageState extends State<LoginPage> {
     lista.then((List<Mensaje> lisMensaje) {
       if (lisMensaje != null && lisMensaje.length > 0) {
         aux = new Mensaje(msg: lisMensaje[0].msg);
+        aux3 = new Mensaje(msg:lisMensaje[3].msg);
         mensajeT = aux.msg.toString();
+        mensajeL = aux3.msg.toString();
       }
     });
   }
@@ -156,13 +161,13 @@ class _LoginPageState extends State<LoginPage> {
       
     );
   }
-  showMessageLogin(context){
+  showMessagelogin(context) {
     Scaffold.of(context).showSnackBar(SnackBar(
       backgroundColor: Colors.green[300],
-      content: Text('Credenciales incorrectas', style: TextStyle(fontSize: 15.0,color: Colors.white)),
+      content:
+          Text(mensajeL, style: TextStyle(fontSize: 15.0, color: Colors.white)),
       duration: Duration(seconds: 2),
     ));
-
   }
 
   _authenticateUser() async {
@@ -174,7 +179,8 @@ class _LoginPageState extends State<LoginPage> {
         if (users != null && users.length > 0) {
           Preference.instance.saveDataUser(usuarioController.text);
           Preference.instance.saveDataPassword(passwordController.text);          
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushReplacementNamed(context, '/home');
+          showMessagelogin(context);
           print('[LoginPage] _authenticateUser: Success');
           
         } else {

@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:app_optativa/data/mensaje_provider.dart';
-import 'package:app_optativa/model/user_model.dart';
+import 'package:app_optativa/com.edu.uce.optativa3.controlador/data/mensaje_provider.dart';
+import 'package:app_optativa/com.edu.uce.optativa3.modelo/model/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:app_optativa/data/database_helper.dart';
+import 'package:app_optativa/com.edu.uce.optativa3.controlador/data/database_helper.dart';
 import 'package:path_provider/path_provider.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -28,8 +28,7 @@ class _SignUpPageState extends State<SignUpPage> {
       new RegExp(r'^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$');
   RegExp phoneRegExp =
       new RegExp(r'[09]\d{8}$');
-  RegExp passRegExp =
-     new RegExp(r'^(?=.*[\u0021-\u002b\u003c-\u0040])\S{8}$');
+  RegExp passExp= new RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}');
 
   @override
   void initState() {
@@ -133,12 +132,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   obscureText: true,
                   validator: (text) {
                     if (text.length == 0) {
-                      return "Este campo  es requerido";
-                    } else if (!passRegExp.hasMatch(text)) {
-                      return "el formato debe tener 8 carateres y uno especial ";
+                      return "Este campo correo es requerido";
+                    } else if (!passExp.hasMatch(text)) {
+                      return "El formato de la contraseña no coicide";
                     }
                     return null;
-                  },
+                  }
+                  
                 ),
                 RaisedButton(
                   child: Text('Registrar'),
