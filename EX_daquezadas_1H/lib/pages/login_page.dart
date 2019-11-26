@@ -4,7 +4,6 @@ import 'package:app_optativa/model/msg_model.dart';
 import 'package:flutter/material.dart';
 import 'package:app_optativa/model/user_model.dart';
 import 'package:app_optativa/data/database_helper.dart';
-//import 'package:toast/toast.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -75,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.blueGrey,
         title: Image.asset(
           "assets/images/logo.png",
           height: 40.0,
@@ -146,14 +145,11 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       setDataUser();
                     },
-                  ),          
-        
+                  ),
                 ],
-
               ),
             ),
           )),
-      
     );
   }
   showMessageLogin(context){
@@ -176,7 +172,6 @@ class _LoginPageState extends State<LoginPage> {
           Preference.instance.saveDataPassword(passwordController.text);          
           Navigator.pushNamed(context, '/home');
           print('[LoginPage] _authenticateUser: Success');
-          
         } else {
           print('[LoginPage] _authenticateUser: Invalid credentials');
         }

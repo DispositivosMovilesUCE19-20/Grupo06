@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:app_optativa/data/mensaje_provider.dart';
 import 'package:app_optativa/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:app_optativa/data/database_helper.dart';
 import 'package:path_provider/path_provider.dart';
 
+
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
-
+enum SingingCharacter { hombre, mujer }
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
@@ -21,16 +21,19 @@ class _SignUpPageState extends State<SignUpPage> {
   final usuarioController = TextEditingController();
   final passwordController = TextEditingController();
   final userEncodeJson = TextEditingController();
-  final mensajeProvider = new MensajeProvider();
+  String generh;
+  String generm;
   String state;
   var _appDocDir;
   RegExp emailRegExp =
       new RegExp(r'^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$');
   RegExp phoneRegExp =
       new RegExp(r'[09]\d{8}$');
-  RegExp passRegExp =
-     new RegExp(r'^(?=.*[\u0021-\u002b\u003c-\u0040])\S{8}$');
+  RegExp passRegExp = 
+      new RegExp(r'^\d|(?=.*[A-Za-z])(?=.*[\u0021-\u002b\u003c-\u0040])\S{8,16}$');
 
+  get priorityList => null;
+SingingCharacter character = SingingCharacter.hombre;
   @override
   void initState() {
     super.initState();
@@ -56,9 +59,6 @@ class _SignUpPageState extends State<SignUpPage> {
       _appDocDir = getApplicationDocumentsDirectory();
     });
   }
-
-  
-  
 
   @override
   Widget build(BuildContext context) {
@@ -127,19 +127,46 @@ class _SignUpPageState extends State<SignUpPage> {
                     }
                   },
                 ),
+              
                 TextFormField(
                   controller: passwordController,
                   decoration: InputDecoration(labelText: 'Password'),
                   obscureText: true,
                   validator: (text) {
                     if (text.length == 0) {
-                      return "Este campo  es requerido";
+                      return "Este campo telefono es requerido";
                     } else if (!passRegExp.hasMatch(text)) {
-                      return "el formato debe tener 8 carateres y uno especial ";
+                      return "El formato para contraseña no es correcto";
                     }
                     return null;
                   },
                 ),
+             Text('Seleccione su genero', style: TextStyle(fontSize: 20, color: Colors.black, )),
+              RadioListTile<SingingCharacter>(
+          title: const Text('Hombre'),
+          value: SingingCharacter.hombre,
+          groupValue: character,
+          onChanged: (SingingCharacter value) {
+            setState(() {
+              character = value;
+              String generh= 'hombre';
+            });
+          },
+        ),
+        RadioListTile<SingingCharacter>(
+
+          title: const Text('Mujer'),
+          value: SingingCharacter.mujer,
+          groupValue: character,
+          onChanged: (SingingCharacter value) {
+            setState(() {
+              character = value;
+              String generh= 'mujer';
+            });
+          },
+        ),
+                
+
                 RaisedButton(
                   child: Text('Registrar'),
                   onPressed: () {
@@ -152,11 +179,13 @@ class _SignUpPageState extends State<SignUpPage> {
                         celularController.text,
                         usuarioController.text,
                         passwordController.text,
+                        generh
                       );
-                      String cont = "0";
-                     
-                      mensajeProvider.postUser(nameController.text, lastnameController.text, emailController.text, celularController.text, usuarioController.text, passwordController.text);
+
+      
+
                       dbHelper.listUser();
+
                       Navigator.pushReplacementNamed(context, '/login');
                       Navigator.pop(context);
                     }
@@ -190,6 +219,4 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ));
   }
-
-  
 }

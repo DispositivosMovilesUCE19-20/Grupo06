@@ -13,9 +13,11 @@ dependencies:
     sdk: flutter
   sqflite: ^0.12.2+1
   path_provider: ^0.4.1
-  toast: ^0.1.5
   shared_preferences: ^0.4.3
   http: any
+  custom_radio: ^0.1.2
+  
+ 
 
   
   cupertino_icons: ^0.1.2
@@ -29,6 +31,5 @@ flutter:
     - assets/images/logo.png
     - assets/images/registrar.png
     - assets/images/Registrate.png
-    - assets/images/uce.jpg
 
   uses-material-design: true
