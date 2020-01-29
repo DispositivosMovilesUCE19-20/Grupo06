@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "196789228496",
+    "firebase_url": "https://prestiobj.firebaseio.com",
+    "project_id": "prestiobj",
+    "storage_bucket": "prestiobj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196789228496:android:808f3eac93f0b22577dfd5",
+        "android_client_info": {
+          "package_name": "com.example.optativa_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196789228496-650uuhrfof7u35tts2cgl0urh7vcarkd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.optativa_app",
+            "certificate_hash": "32e8aa2e29619c46cd6af60f49a0399968084c16"
+          }
+        },
+        {
+          "client_id": "196789228496-j87m81mps0ov0p5gu46q4g9i9vafl3qm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtCnSBAO8YhS6CLCYleF4-cP14kPhVPNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196789228496-j87m81mps0ov0p5gu46q4g9i9vafl3qm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
